@@ -1,0 +1,15 @@
+#!/bin/bash
+# Claude Code セッション自動起動
+# Terminal.appで5つの--remote-controlセッションを起動する
+
+SESSION_COUNT=5
+WORK_DIR="$HOME"
+
+for i in $(seq 1 $SESSION_COUNT); do
+  osascript -e "
+    tell application \"Terminal\"
+      activate
+      do script \"cd $WORK_DIR && claude --remote-control 'Session $i'\"
+    end tell
+  "
+done
