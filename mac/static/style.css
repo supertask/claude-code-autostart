@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #16213e;
+  border-radius: 16px;
+  padding: 32px;
+  width: 360px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0f3460;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.status-indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-indicator.on {
+  background: #4ecca3;
+  box-shadow: 0 0 8px #4ecca3;
+}
+
+.status-indicator.partial {
+  background: #f0a500;
+  box-shadow: 0 0 8px #f0a500;
+}
+
+.status-indicator.off {
+  background: #e74c3c;
+  box-shadow: 0 0 8px #e74c3c;
+}
+
+.status-text {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-start {
+  background: #4ecca3;
+  color: #1a1a2e;
+}
+
+.btn-stop {
+  background: #e74c3c;
+}
+
+.btn-restart {
+  background: #f0a500;
+  color: #1a1a2e;
+}
+
+.config-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f3460;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.config-section label {
+  font-size: 14px;
+}
+
+.config-section select {
+  background: #16213e;
+  color: #e0e0e0;
+  border: 1px solid #4ecca3;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.links {
+  margin-bottom: 16px;
+}
+
+.link-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: #533483;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+
+.link-btn:hover {
+  opacity: 0.85;
+}
+
+.pid-section {
+  background: #0f3460;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.pid-section h3 {
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #4ecca3;
+}
+
+.pid-section ul {
+  list-style: none;
+}
+
+.pid-section li {
+  font-size: 12px;
+  font-family: monospace;
+  padding: 2px 0;
+  color: #aaa;
+}

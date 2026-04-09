@@ -1,59 +1,68 @@
 # claude-code-autostart
 
-Mac/Windows起動時にClaude Codeの `--remote-control` セッションを5つ自動起動する。
+Mac/Windows起動時にClaude Codeの `--remote-control` セッションを管理するツール。
 
-## 構成
+## Mac: Claude Code Manager
 
+メニューバー常駐アプリ + Web管理画面でセッションを制御。
+
+### セットアップ
+
+```bash
+cd mac
+pip3 install -r requirements.txt
 ```
-├── mac/
-│   ├── Launch Claude Sessions.app/   # .appバンドル（ログイン項目に登録）
-│   └── launch-claude-sessions.sh     # 単体スクリプト版
-└── windows/
-    ├── launch-claude-sessions.bat    # バッチファイル版
-    └── launch-claude-sessions.ps1   # PowerShell版
+
+### 起動
+
+```bash
+cd mac
+python3 claude_manager.py
 ```
 
-## Mac セットアップ
+メニューバーに「Claude」が表示され、`http://localhost:19800` でWeb管理画面にアクセスできます。
 
-### 1. アプリをApplicationsにコピー
+### 機能
+
+- **メニューバー**: 全起動/全停止/再起動、セッション数変更、ステータス表示
+- **Web管理画面**: ブラウザから同じ操作（Tailscale経由でリモートからも）
+- **API**: `GET /api/status`, `POST /api/start`, `POST /api/stop`, `POST /api/restart`, `GET/POST /api/config`
+
+### ログイン項目に登録（Mac起動時に自動起動）
 
 ```bash
 cp -r mac/Launch\ Claude\ Sessions.app ~/Applications/
 chmod +x ~/Applications/Launch\ Claude\ Sessions.app/Contents/MacOS/launcher
-```
-
-### 2. ログイン項目に登録
-
-```bash
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"'$HOME'/Applications/Launch Claude Sessions.app", hidden:false}'
 ```
 
-### 3. 動作確認
+### カスタマイズ
 
-```bash
-open ~/Applications/Launch\ Claude\ Sessions.app
+`mac/config.json` を編集：
+
+```json
+{
+  "session_count": 5,
+  "work_dir": "~",
+  "web_port": 19800
+}
 ```
 
-## Windows セットアップ
+## Windows
 
-### 1. スタートアップフォルダにコピー
+シンプルなスクリプト版（GUI管理は今後対応予定）。
 
-```powershell
-Copy-Item windows\launch-claude-sessions.bat "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"
-```
-
-### 2. 動作確認
+### 起動
 
 ```powershell
 .\windows\launch-claude-sessions.bat
 ```
 
-## カスタマイズ
+### スタートアップ登録
 
-各スクリプト内の以下を編集：
-
-- `SESSION_COUNT` — セッション数（デフォルト: 5）
-- `WORK_DIR` — 作業ディレクトリ（デフォルト: ホームディレクトリ）
+```powershell
+Copy-Item windows\launch-claude-sessions.bat "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"
+```
 
 ## ログイン項目の解除
 
