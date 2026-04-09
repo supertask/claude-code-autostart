@@ -5,5 +5,5 @@ $SessionCount = 5
 $WorkDir = $env:USERPROFILE
 
 for ($i = 1; $i -le $SessionCount; $i++) {
-    Start-Process cmd -ArgumentList "/k", "cd /d $WorkDir && claude --remote-control `"Session $i`""
+    Start-Process cmd -ArgumentList "/k", "cd /d $WorkDir && claude --remote-control --trust-workspace"
 }

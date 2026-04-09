@@ -9,7 +9,7 @@ for i in $(seq 1 $SESSION_COUNT); do
   osascript -e "
     tell application \"Terminal\"
       activate
-      do script \"cd $WORK_DIR && claude --remote-control 'Session $i'\"
+      do script \"cd $WORK_DIR && claude --remote-control --trust-workspace\"
     end tell
   "
 done
